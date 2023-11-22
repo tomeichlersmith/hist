@@ -24,7 +24,6 @@ specific jobs:
 $ nox -l # List all the defined sessions
 $ nox -s lint  # Lint only
 $ nox -s tests-3.9  # Python 3.9 tests only
-$ nox -s docs -- serve  # Build and serve the docs
 $ nox -s build  # Make an SDist and wheel
 ```
 
@@ -36,6 +35,14 @@ run the linux tests from anywhere with Docker:
 docker run --rm -v $PWD:/nox -w /nox -t quay.io/pypa/manylinux2014_x86_64:latest pipx run nox -s tests-3.9
 # Regenerate the MPL comparison images:
 docker run --rm -v $PWD:/nox -w /nox -t quay.io/pypa/manylinux2014_x86_64:latest pipx run nox -s regenerate
+```
+
+### Documentation
+The generation of documentation requires `pandoc` and `dot` (a Graphviz application) in addition.
+```console
+$ sudo apt install pandoc graphviz
+$ nox -s docs
+$ firefox _build/html/index.html
 ```
 
 ### PyPI
